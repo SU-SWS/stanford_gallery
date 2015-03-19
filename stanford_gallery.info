@@ -23,7 +23,7 @@ dependencies[] = views
 dependencies[] = views_ui
 dependencies[] = wysiwyg
 
-stylesheets[] = css/images.css
+stylesheets[all][] = css/images.css
 
 
 features[ctools][] = js_injector:js_injector_rules:1
