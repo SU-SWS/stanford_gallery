@@ -1,0 +1,7 @@
+
+stanford_gallery, 2015-02-24
+-----------------------
+- Stanford compliant field and content name spaces
+- Body display set to Default
+- files in a subdirectory
+- CSS injector rule added manually to css from .info file
