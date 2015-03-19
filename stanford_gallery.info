@@ -20,7 +20,6 @@ dependencies[] = stanford_page
 dependencies[] = text
 dependencies[] = views
 dependencies[] = views_ui
-dependencies[] = wysiwyg
 
 stylesheets[all][] = css/images.css
 
@@ -55,6 +54,5 @@ features[variable][] = node_submitted_stanford_image
 features[variable][] = pathauto_node_stanford_gallery_pattern
 features[variable][] = pathauto_node_stanford_image_pattern
 features[views_view][] = gallery_images
-features[wysiwyg][] = filtered_html
 features_exclude[dependencies][options] = options
 features_exclude[dependencies][strongarm] = strongarm
