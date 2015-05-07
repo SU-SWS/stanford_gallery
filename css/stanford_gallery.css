@@ -1,4 +1,7 @@
-/* line 6, stanford_gallery.scss */
+/**
+ * Some Base Settings
+ */
+/* line 9, stanford_gallery.scss */
 .node-stanford-gallery .field-name-field-s-image-info > .field-items > .field-item {
   display: -moz-inline-stack;
   display: inline-block;
@@ -8,12 +11,18 @@
   *display: inline;
   vertical-align: top;
 }
+/* line 12, stanford_gallery.scss */
+.node-stanford-gallery .field-name-field-s-image-info > .field-items > .field-item img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
 
 /**
  * View Modes
  */
-/* line 21, stanford_gallery.scss */
-.field-collection-view.view-mode-stanford-large-square {
+/* line 30, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-large {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -22,12 +31,50 @@
   *display: inline;
   padding: 0 1em 0.5em 0;
 }
-/* line 26, stanford_gallery.scss */
-.field-collection-view.view-mode-stanford-large-square .field-name-field-s-image-credits,
-.field-collection-view.view-mode-stanford-large-square .field-name-field-s-image-caption {
+/* line 35, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-large .field-name-field-s-image-credits,
+.field-collection-view.view-mode-gallery-large .field-name-field-s-image-caption {
   max-width: 270px;
 }
-/* line 30, stanford_gallery.scss */
-.field-collection-view.view-mode-stanford-large-square .field-name-field-s-image-credits {
+/* line 39, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-large .field-name-field-s-image-credits {
+  display: none;
+}
+/* line 46, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-medium {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  padding: 0 1em 0.5em 0;
+}
+/* line 51, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-medium .field-name-field-s-image-credits,
+.field-collection-view.view-mode-gallery-medium .field-name-field-s-image-caption {
+  max-width: 140px;
+}
+/* line 55, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-medium .field-name-field-s-image-credits {
+  display: none;
+}
+/* line 62, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-small {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  padding: 0 1em 0.5em 0;
+}
+/* line 67, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-small .field-name-field-s-image-credits,
+.field-collection-view.view-mode-gallery-small .field-name-field-s-image-caption {
+  max-width: 100px;
+}
+/* line 71, stanford_gallery.scss */
+.field-collection-view.view-mode-gallery-small .field-name-field-s-image-credits {
   display: none;
 }

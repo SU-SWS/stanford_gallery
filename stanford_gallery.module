@@ -8,55 +8,9 @@ include_once 'stanford_gallery.features.inc';
 
 
 /**
- * Implements hook_preprocess_page().
- */
-function stanford_gallery_preprocess_page(&$vars) {
-  $rule = "/gallery\/.*/";
-  $cp = current_path();
-  // No admin no thanks.
-  if (path_is_admin($cp)) {
-    return;
-  }
-
-  // CP is formatted node/1234 usually.
-  $alias = drupal_get_path_alias($cp);
-
-  // @todo: Change this to an #attach.
-  if (preg_match($rule, $alias) == 1) {
-    drupal_add_js(drupal_get_path("module", "stanford_gallery") . "/js/stanford_gallery.js");
-  }
-
-}
-
-/**
  * Implements hook_form_FORMID_alter().
  */
 function stanford_gallery_form_stanford_gallery_node_form_alter(&$form, &$form_state) {
-
-  // Populate the View Modes option with actual view modes.
-  // $ei = entity_get_info("field_collection_item");
-  // $vmi = $ei['view modes'];
-  // $view_modes = array('none' => t("None"));
-  // foreach ($vmi as $key => $settings) {
-  //   $view_modes[$key] = $settings['label'];
-  // }
-
-  // // Get the default value from the real field.
-  // $default_value = !empty($form['#entity']->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value']) ? $form['#entity']->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value'] : "none";
-
-  // // Hide the view mode text field.
-  // $form['field_s_gallery_view_mode']["#access"] = FALSE;
-
-  // // Create a fake drop down.
-  // $form['fake_field_view_mode']["#title"] = t("View Mode");
-  // $form['fake_field_view_mode']["#type"] = "select";
-  // $form['fake_field_view_mode']["#options"] = $view_modes;
-  // $form['fake_field_view_mode']["#description"] = t("Changing the value of this field will change how the thumbnails are displayed.");
-  // $form['fake_field_view_mode']["#default_value"] = $default_value;
-
-  // // Add fake field to right groups.
-  // $form['#groups']['group_s_gal_imgs']->children[] = "fake_field_view_mode";
-  // $form['#group_children']['fake_field_view_mode'] = "group_s_gal_imgs";
 
   // Change the field collection form to show more of the things I like.
   foreach ($form['field_s_image_info'][LANGUAGE_NONE] as $index => &$fields) {
@@ -79,18 +33,91 @@ function stanford_gallery_form_stanford_gallery_node_form_alter(&$form, &$form_s
 
   }
 
-  // Add an early validate function.
-  // array_unshift($form['#validate'], "stanford_gallery_form_stanford_gallery_node_form_validate");
-
 }
 
 /**
- * Validation function for the stanford_gallery node type.
- * @return [type] [description]
+ * *****************************************************************************
+ * FIELD FORMATTER
+ * *****************************************************************************
  */
-function stanford_gallery_form_stanford_gallery_node_form_validate(&$form, &$form_state) {
 
-  // Move the fake field values into the real field.
-  // form_set_value($form['field_s_gallery_view_mode'], array(LANGUAGE_NONE => array(array("value" => $form_state['values']['fake_field_view_mode']))), $form_state);
+/**
+ * Implements hook_field_formatter_info().
+ */
+function stanford_gallery_field_formatter_info() {
+  $formatters = array(
+    'stanford_gallery' => array(
+      'label' => t('Stanford Gallery'),
+      'field types' => array('field_collection'),
+      'settings' => array(),
+      'module' => 'stanford_gallery',
+      'description' => t('A colorbox gallery'),
+    ),
+  );
+  return $formatters;
+}
 
+/**
+ * Implements hook_field_formatter_settings_form().
+ */
+function stanford_gallery_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $element = array();
+  $element['something']['#markup'] = "<p>" . t("no settings") . "</p>";
+  return $element;
+}
+
+/**
+ * Implements hook_field_formatter_settings_summary().
+ */
+function stanford_gallery_field_formatter_settings_summary($field, $instance, $view_mode) {
+  return '<br /> Colorbox Gallery';
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function stanford_gallery_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  $settings = $display['settings'];
+
+  $view_mode = !empty($entity->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value']) ? $entity->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value'] : 'gallery_large';
+
+  foreach ($items as $delta => $item) {
+    if ($field_collection = field_collection_field_get_entity($item)) {
+      $element[$delta]['entity'] = $field_collection->view($view_mode);
+      $element[$delta]['#theme_wrappers'] = array('field_collection_view');
+      $element[$delta]['#attributes']['class'][] = 'field-collection-view';
+      $element[$delta]['#attributes']['class'][] = 'clearfix';
+      $element[$delta]['#attributes']['class'][] = drupal_clean_css_identifier('view-mode-' . $view_mode);
+    }
+  }
+
+  if (!empty($items) || !empty($element['#suffix'])) {
+    $element['#attached']['css'][] = drupal_get_path('module', 'field_collection') . '/field_collection.theme.css';
+  }
+
+  // Add colorbox settings JS.
+  $element['#attached']['js'][] = drupal_get_path("module", "stanford_gallery") . "/js/stanford_gallery.js";
+
+  // Caption setting.
+  if (!empty($entity->field_s_gallery_show_capt[LANGUAGE_NONE][0]['value']) && is_array($items)) {
+    $captions = array();
+    foreach ($items as $index => $fc_info) {
+      $fc = entity_load('field_collection_item', array($fc_info['value']));
+
+      // Check to make sure we got the field collection.
+      if (!is_array($fc) || !isset($fc[$fc_info['value']])) {
+        continue;
+      }
+
+      $captions[] = isset($fc[$fc_info['value']]->field_s_image_caption[LANGUAGE_NONE][0]['value']) ? strip_tags($fc[$fc_info['value']]->field_s_image_caption[LANGUAGE_NONE][0]['value']) : "";
+    }
+
+    drupal_add_js(array("stanford_gallery" => array("captions" => $captions)), 'setting');
+
+  }
+
+
+
+  return $element;
 }

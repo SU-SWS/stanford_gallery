@@ -3,28 +3,33 @@ Drupal.behaviors.stanford_gallery = {
 
   (function ($) {
 
-    // var cboxOptions = {
-    //   width: '95%',
-    //   height: '95%',
-    //   maxWidth: '960px',
-    //   maxHeight: '960px',
-    // };
+    // Define selector.
+    var selector = "stanford-gallery-image";
 
-    // $('.cbox-link', context).colorbox(cboxOptions);
+    // Start by adding the appropriate class to all of the items.
+    $(".field-name-field-s-image-info .field-items a", context).addClass(selector);
 
-    // $(window).resize(function(){
-    //     $.colorbox.resize({
-    //       width: window.innerWidth > parseInt(cboxOptions.maxWidth) ? cboxOptions.maxWidth : cboxOptions.width,
-    //       height: window.innerHeight > parseInt(cboxOptions.maxHeight) ? cboxOptions.maxHeight : cboxOptions.height
-    //     });
-    // });
+    // Store the selected items for use.
+    var items = $("." + selector);
 
-    // $('#cboxLoadedContent', context).bind('cbox_complete', function(){
-    //   $('form input:first', context).focus();
-    // });
+    // If the captions setting is available set
+    if (Drupal.settings.stanford_gallery.captions.length) {
+      $.each(items, function(i, v) {
+        $(v).attr('title', Drupal.settings.stanford_gallery.captions[i]);
+      });
+    }
 
-  $(".field-name-field-s-image-info .field-items a", context).addClass("stanford-gallery-image");
-  $(".stanford-gallery-image").colorbox({rel : "group1"});
+    // Default settings.
+    var cboxsettings = {
+      rel : "group1",
+      scalePhotos : true,
+      returnFocus : true,
+      maxWidth : "98%",
+      maxHeight : "90%"
+    };
+
+    // Initialize the gallery.
+    items.colorbox(cboxsettings);
 
   })(jQuery);
 
