@@ -114,6 +114,18 @@ function stanford_gallery_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['gallery_images'] = array(
+    t('Master'),
+    t('Gallery Images'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+    t('Block'),
+  );
   $export['gallery_images'] = $view;
 
   return $export;
