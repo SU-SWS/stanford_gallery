@@ -2,7 +2,7 @@
  * Some Base Settings
  */
 /* line 9, stanford_gallery.scss */
-.node-stanford-gallery .field-name-field-s-image-info > .field-items > .field-item {
+.node-stanford-gallery .field-name-field-s-gallery-image-info > .field-items > .field-item {
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: middle;
@@ -12,18 +12,18 @@
   vertical-align: top;
 }
 /* line 12, stanford_gallery.scss */
-.node-stanford-gallery .field-name-field-s-image-info > .field-items > .field-item img {
+.node-stanford-gallery .field-name-field-s-gallery-image-info > .field-items > .field-item img {
   max-width: 100%;
   width: 100%;
   height: auto;
 }
 /* line 17, stanford_gallery.scss */
-.node-stanford-gallery .field-name-field-s-image-info > .field-items > .field-item a.stanford-gallery-image {
+.node-stanford-gallery .field-name-field-s-gallery-image-info > .field-items > .field-item a.stanford-gallery-image {
   border: 0;
   margin: 0;
 }
 /* line 21, stanford_gallery.scss */
-.node-stanford-gallery .field-name-field-s-image-info > .field-items > .field-item a.stanford-gallery-image :hover {
+.node-stanford-gallery .field-name-field-s-gallery-image-info > .field-items > .field-item a.stanford-gallery-image :hover {
   border: solid 2px #8c1515;
   margin: -2px;
   opacity: .9;

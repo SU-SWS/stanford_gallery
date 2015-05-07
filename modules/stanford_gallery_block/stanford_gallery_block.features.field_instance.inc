@@ -19,12 +19,9 @@ function stanford_gallery_block_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'links' => 0,
-          'view_mode' => 'default',
-        ),
-        'type' => 'entityreference_entity_view',
+        'module' => 'stanford_gallery_block',
+        'settings' => array(),
+        'type' => 'stanford_gallery_block',
         'weight' => 1,
       ),
     ),

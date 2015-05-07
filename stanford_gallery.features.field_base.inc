@@ -10,26 +10,26 @@
 function stanford_gallery_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_s_gallery_image'
-  $field_bases['field_s_gallery_image'] = array(
+  // Exported field_base: 'field_s_gallery_image_info'
+  $field_bases['field_s_gallery_image_info'] = array(
     'active' => 1,
-    'cardinality' => 1,
+    'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_s_gallery_image',
+    'field_name' => 'field_s_gallery_image_info',
     'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
+      'revision_id' => array(
+        0 => 'revision_id',
       ),
     ),
     'locked' => 0,
-    'module' => 'image',
+    'module' => 'field_collection',
     'settings' => array(
-      'default_image' => 0,
-      'uri_scheme' => 'public',
+      'hide_blank_items' => TRUE,
+      'path' => '',
     ),
     'translatable' => 0,
-    'type' => 'image',
+    'type' => 'field_collection',
   );
 
   // Exported field_base: 'field_s_gallery_show_capt'

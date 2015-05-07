@@ -6,35 +6,6 @@
 
 include_once 'stanford_gallery.features.inc';
 
-
-/**
- * Implements hook_form_FORMID_alter().
- */
-function stanford_gallery_form_stanford_gallery_node_form_alter(&$form, &$form_state) {
-
-  // Change the field collection form to show more of the things I like.
-  foreach ($form['field_s_image_info'][LANGUAGE_NONE] as $index => &$fields) {
-
-    // Avoid items that are not values. eg: #theme, #suffix, #language
-    if (!is_numeric($index)) {
-      continue;
-    }
-
-    // Remove the image from the group.
-    unset($fields['#groups']['group_s_image']->children['2']);
-    unset($fields['#fieldgroups']['group_s_image']->children['2']);
-    unset($fields['#group_children']['field_s_image_image']);
-
-    // Change the label name of the fieldset.
-    $fields['#groups']['group_s_image']->label = t("Add / Edit Caption and Credits");
-
-    // Change the description text of the image field.
-    $fields['field_s_image_image'][LANGUAGE_NONE][0]["#description"] = t("Your image will be scaled and cropped when it is displayed. The size and cropping can be changed by selecting different view modes found above.");
-
-  }
-
-}
-
 /**
  * *****************************************************************************
  * FIELD FORMATTER
@@ -117,7 +88,9 @@ function stanford_gallery_field_formatter_view($entity_type, $entity, $field, $i
 
   }
 
-
-
   return $element;
 }
+
+
+
+

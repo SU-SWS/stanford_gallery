@@ -7,7 +7,7 @@ Drupal.behaviors.stanford_gallery = {
     var selector = "stanford-gallery-image";
 
     // Start by adding the appropriate class to all of the items.
-    $(".field-name-field-s-image-info .field-items a", context).addClass(selector);
+    $(".field-name-field-s-gallery-image-info .field-items a", context).addClass(selector);
 
     // Store the selected items for use.
     var items = $("." + selector);
