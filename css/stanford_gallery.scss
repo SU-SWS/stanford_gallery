@@ -1,0 +1,45 @@
+@import "compass/css3";
+
+.node-stanford-gallery {
+  .field-name-field-s-image-info {
+    > .field-items {
+     > .field-item {
+        @include inline-block;
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+/**
+ * View Modes
+ */
+
+.field-collection-view {
+
+  // Large Square.
+  &.view-mode-stanford-large-square {
+    @include inline-block;
+    padding: 0 1em 0.5em 0;
+
+    .field-name-field-s-image-credits,
+    .field-name-field-s-image-caption {
+      max-width: 270px;
+    }
+
+    .field-name-field-s-image-credits {
+      display: none;
+    }
+
+  }
+
+  // Next View Mode
+
+  // Next View Mode
+
+  // Another view mode
+
+  // Next View Mode
+
+}
+

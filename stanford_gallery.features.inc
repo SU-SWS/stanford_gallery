@@ -8,9 +8,6 @@
  * Implements hook_ctools_plugin_api().
  */
 function stanford_gallery_ctools_plugin_api($module = NULL, $api = NULL) {
-  if ($module == "js_injector" && $api == "js_injector_rules") {
-    return array("version" => "1");
-  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -34,14 +31,6 @@ function stanford_gallery_node_info() {
       'description' => '',
       'has_title' => '1',
       'title_label' => t('Description'),
-      'help' => '',
-    ),
-    'stanford_image' => array(
-      'name' => t('Image'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Description/Caption'),
       'help' => '',
     ),
   );

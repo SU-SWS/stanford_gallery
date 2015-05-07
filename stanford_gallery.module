@@ -5,3 +5,92 @@
  */
 
 include_once 'stanford_gallery.features.inc';
+
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function stanford_gallery_preprocess_page(&$vars) {
+  $rule = "/gallery\/.*/";
+  $cp = current_path();
+  // No admin no thanks.
+  if (path_is_admin($cp)) {
+    return;
+  }
+
+  // CP is formatted node/1234 usually.
+  $alias = drupal_get_path_alias($cp);
+
+  // @todo: Change this to an #attach.
+  if (preg_match($rule, $alias) == 1) {
+    drupal_add_js(drupal_get_path("module", "stanford_gallery") . "/js/stanford_gallery.js");
+  }
+
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ */
+function stanford_gallery_form_stanford_gallery_node_form_alter(&$form, &$form_state) {
+
+  // Populate the View Modes option with actual view modes.
+  // $ei = entity_get_info("field_collection_item");
+  // $vmi = $ei['view modes'];
+  // $view_modes = array('none' => t("None"));
+  // foreach ($vmi as $key => $settings) {
+  //   $view_modes[$key] = $settings['label'];
+  // }
+
+  // // Get the default value from the real field.
+  // $default_value = !empty($form['#entity']->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value']) ? $form['#entity']->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value'] : "none";
+
+  // // Hide the view mode text field.
+  // $form['field_s_gallery_view_mode']["#access"] = FALSE;
+
+  // // Create a fake drop down.
+  // $form['fake_field_view_mode']["#title"] = t("View Mode");
+  // $form['fake_field_view_mode']["#type"] = "select";
+  // $form['fake_field_view_mode']["#options"] = $view_modes;
+  // $form['fake_field_view_mode']["#description"] = t("Changing the value of this field will change how the thumbnails are displayed.");
+  // $form['fake_field_view_mode']["#default_value"] = $default_value;
+
+  // // Add fake field to right groups.
+  // $form['#groups']['group_s_gal_imgs']->children[] = "fake_field_view_mode";
+  // $form['#group_children']['fake_field_view_mode'] = "group_s_gal_imgs";
+
+  // Change the field collection form to show more of the things I like.
+  foreach ($form['field_s_image_info'][LANGUAGE_NONE] as $index => &$fields) {
+
+    // Avoid items that are not values. eg: #theme, #suffix, #language
+    if (!is_numeric($index)) {
+      continue;
+    }
+
+    // Remove the image from the group.
+    unset($fields['#groups']['group_s_image']->children['2']);
+    unset($fields['#fieldgroups']['group_s_image']->children['2']);
+    unset($fields['#group_children']['field_s_image_image']);
+
+    // Change the label name of the fieldset.
+    $fields['#groups']['group_s_image']->label = t("Add / Edit Caption and Credits");
+
+    // Change the description text of the image field.
+    $fields['field_s_image_image'][LANGUAGE_NONE][0]["#description"] = t("Your image will be scaled and cropped when it is displayed. The size and cropping can be changed by selecting different view modes found above.");
+
+  }
+
+  // Add an early validate function.
+  // array_unshift($form['#validate'], "stanford_gallery_form_stanford_gallery_node_form_validate");
+
+}
+
+/**
+ * Validation function for the stanford_gallery node type.
+ * @return [type] [description]
+ */
+function stanford_gallery_form_stanford_gallery_node_form_validate(&$form, &$form_state) {
+
+  // Move the fake field values into the real field.
+  // form_set_value($form['field_s_gallery_view_mode'], array(LANGUAGE_NONE => array(array("value" => $form_state['values']['fake_field_view_mode']))), $form_state);
+
+}
