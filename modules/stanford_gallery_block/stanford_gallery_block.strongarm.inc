@@ -65,7 +65,7 @@ function stanford_gallery_block_strongarm() {
           'weight' => '6',
         ),
         'view_mode' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'redirect' => array(
           'weight' => '7',

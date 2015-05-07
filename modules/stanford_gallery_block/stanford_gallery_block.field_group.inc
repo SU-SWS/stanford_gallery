@@ -25,8 +25,9 @@ function stanford_gallery_block_field_group_info() {
     'children' => array(
       0 => 'field_s_gallery_reference',
       1 => 'field_s_gallery_show_body',
-      2 => 'title',
-      3 => 'view_mode',
+      2 => 'field_s_gallery_view_mode',
+      3 => 'title',
+      4 => 'view_mode',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
