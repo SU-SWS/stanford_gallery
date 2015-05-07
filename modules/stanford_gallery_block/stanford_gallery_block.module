@@ -27,6 +27,12 @@ function stanford_gallery_block_field_formatter_info() {
  * Implements hook_form_alter().
  */
 function stanford_gallery_block_form_bean_form_alter(&$form, &$form_state) {
+
+  // Only work on the stanford_gallery bean type.
+  if (!isset($form['#bundle']) || $form['#bundle'] !== "stanford_gallery") {
+    return;
+  }
+
   // Get rid of beans view mode option.
   $form['view_mode']['#access'] = FALSE;
 }
