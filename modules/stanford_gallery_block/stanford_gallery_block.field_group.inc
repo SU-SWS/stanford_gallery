@@ -31,12 +31,13 @@ function stanford_gallery_block_field_group_info() {
     ),
     'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Gallery Settings',
       'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-gal-settings field-group-tab',
         'required_fields' => 1,
+        'classes' => 'group-gal-settings field-group-tab',
+        'description' => '',
       ),
+      'formatter' => 'open',
     ),
   );
   $export['group_gal_settings|bean|stanford_gallery|form'] = $field_group;
