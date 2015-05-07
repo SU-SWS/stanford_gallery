@@ -27,4 +27,3 @@ features[field_instance][] = bean-stanford_gallery-field_s_gallery_reference
 features[field_instance][] = bean-stanford_gallery-field_s_gallery_show_body
 features[field_instance][] = bean-stanford_gallery-field_s_gallery_view_mode
 features[variable][] = field_bundle_settings_bean__stanford_gallery
-project path = sites/default/modules/stanford/stanford_gallery/modules
