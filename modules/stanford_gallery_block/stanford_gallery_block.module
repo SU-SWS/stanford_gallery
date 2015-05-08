@@ -87,8 +87,13 @@ function stanford_gallery_block_field_formatter_view($entity_type, $entity, $fie
     // Change the view mode of the field collections.
     $entity->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value'] = $view_mode;
 
-    // Remove the title.
-    $entity->title = "";
+    // Change the title of the node if there is a block title set.
+    if (!empty($bean->title)) {
+      $entity->title = $bean->title;
+    }
+    else {
+      $settings['view_mode'] = "full";
+    }
 
     // Remove the body.
     if (isset($bean->field_s_gallery_show_body[LANGUAGE_NONE][0]['value'])) {

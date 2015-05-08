@@ -34,7 +34,7 @@ function stanford_gallery_node_info() {
     'stanford_gallery' => array(
       'name' => t('Gallery'),
       'base' => 'node_content',
-      'description' => '',
+      'description' => t('A content type that allows content authors to create a thumbnail gallery of images with a modal pop up.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
