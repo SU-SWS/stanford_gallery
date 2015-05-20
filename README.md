@@ -2,9 +2,7 @@
 
 
 #[Stanford Gallery](https://github.com/SU-SWS/stanford_gallery)
-##### Version: 7.x-1.x-dev
-
-Original Author: Randall Funke
+##### Version: 7.x-2.x
 
 Maintainers: [jbickar](https://github.com/jbickar), [sherakama](https://github.com/sherakama)
 [Changelog.txt](CHANGELOG.txt)
@@ -19,9 +17,8 @@ Install this module like any other module. [See Drupal Documentation](https://dr
 Use
 ---
 
-1. Create a Gallery using the gallery content type
-3. Upload images from the image content type and tag to a gallery
-4. Visit your gallery landing page and view your images
+1. Create new gallery content types and upload images.
+2. Create blocks to use gallery content types through the Stanford Gallery Bean.
 
 Contribution / Collaboration
 ---
