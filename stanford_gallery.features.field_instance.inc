@@ -15,7 +15,7 @@ function stanford_gallery_field_default_field_instances() {
     'bundle' => 'field_s_gallery_image_info',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Optionally enter information to appear as a caption for this image. This caption appears in the modal pop up after the user clicks on a thumbnail.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -28,6 +28,12 @@ function stanford_gallery_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 2,
+      ),
+      'gallery_large_scaled' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'gallery_medium' => array(
         'label' => 'above',
@@ -92,7 +98,7 @@ function stanford_gallery_field_default_field_instances() {
     'bundle' => 'field_s_gallery_image_info',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter the photographer or organization credits.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -105,6 +111,12 @@ function stanford_gallery_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 3,
+      ),
+      'gallery_large_scaled' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
       ),
       'gallery_medium' => array(
         'label' => 'above',
@@ -168,14 +180,14 @@ function stanford_gallery_field_default_field_instances() {
   $field_instances['field_collection_item-field_s_gallery_image_info-field_s_image_image'] = array(
     'bundle' => 'field_s_gallery_image_info',
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Your image will be scaled and cropped when it is displayed. You can choose a size through the \'Thumbnail size\' field above.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
-          'image_link' => 'content',
-          'image_style' => 'large',
+          'image_link' => 'file',
+          'image_style' => 'med-square',
         ),
         'type' => 'image',
         'weight' => 0,
@@ -186,6 +198,16 @@ function stanford_gallery_field_default_field_instances() {
         'settings' => array(
           'image_link' => 'file',
           'image_style' => 'large-square',
+        ),
+        'type' => 'image',
+        'weight' => 0,
+      ),
+      'gallery_large_scaled' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'file',
+          'image_style' => 'large-scaled',
         ),
         'type' => 'image',
         'weight' => 0,
@@ -216,13 +238,13 @@ function stanford_gallery_field_default_field_instances() {
     'label' => 'Image',
     'required' => 0,
     'settings' => array(
-      'alt_field' => 0,
+      'alt_field' => 1,
       'default_image' => 0,
-      'file_directory' => '',
+      'file_directory' => 'gallery',
       'file_extensions' => 'png gif jpg jpeg',
       'max_filesize' => '',
-      'max_resolution' => '',
-      'min_resolution' => '',
+      'max_resolution' => '1200x1200',
+      'min_resolution' => '50x50',
       'title_field' => 0,
       'user_register_form' => FALSE,
     ),
@@ -346,7 +368,7 @@ function stanford_gallery_field_default_field_instances() {
     'bundle' => 'field_s_gallery_image_info',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field gives you a place to record source and other information for identifying this image. For example, if it has changed, you can enter the original name of this image. This record-keeping information is hidden and is not displayed with the image.',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -356,6 +378,12 @@ function stanford_gallery_field_default_field_instances() {
       ),
       'gallery_large' => array(
         'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'gallery_large_scaled' => array(
+        'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 1,
@@ -423,7 +451,7 @@ function stanford_gallery_field_default_field_instances() {
     'bundle' => 'stanford_gallery',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Content added to this field will show up above the thumbnails.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -451,14 +479,41 @@ function stanford_gallery_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
+    'label' => 'Description',
+    'required' => 0,
     'settings' => array(
-      'display_summary' => TRUE,
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
+      'display_summary' => 1,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'rows' => 20,
@@ -566,11 +621,11 @@ function stanford_gallery_field_default_field_instances() {
     'bundle' => 'stanford_gallery',
     'default_value' => array(
       0 => array(
-        'value' => 'default',
+        'value' => 'gallery_medium',
       ),
     ),
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Change the size of the thumbnails displayed on the page.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -593,7 +648,7 @@ function stanford_gallery_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_s_gallery_view_mode',
-    'label' => 'View Mode',
+    'label' => 'Thumbnail Size',
     'required' => 1,
     'settings' => array(
       'user_register_form' => FALSE,
@@ -609,14 +664,20 @@ function stanford_gallery_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Body');
   t('Caption');
+  t('Change the size of the thumbnails displayed on the page.');
   t('Check this box to display the captions in the modal pop up. ');
+  t('Content added to this field will show up above the thumbnails.');
   t('Credits');
+  t('Description');
+  t('Enter the photographer or organization credits.');
   t('Image');
+  t('Optionally enter information to appear as a caption for this image. This caption appears in the modal pop up after the user clicks on a thumbnail.');
   t('Show Captions');
   t('Source Info');
-  t('View Mode');
+  t('This text field gives you a place to record source and other information for identifying this image. For example, if it has changed, you can enter the original name of this image. This record-keeping information is hidden and is not displayed with the image.');
+  t('Thumbnail Size');
+  t('Your image will be scaled and cropped when it is displayed. You can choose a size through the \'Thumbnail size\' field above.');
 
   return $field_instances;
 }

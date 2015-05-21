@@ -24,7 +24,7 @@ Drupal.behaviors.stanford_gallery = {
     // Store the selected items for use.
     var items = $("." + selector);
 
-    // Init each gallery independantly
+    // Init each gallery independantly.
     $.each($(".field-name-field-s-gallery-image-info"), function(i,v) {
       var galleryItems = $(v).find("." + selector);
       cboxsettings.rel = "group" + i;
