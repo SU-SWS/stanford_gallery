@@ -12,7 +12,10 @@ Drupal.behaviors.stanford_gallery = {
       scalePhotos : true,
       returnFocus : true,
       maxWidth : "98%",
-      maxHeight : "90%"
+      maxHeight : "90%",
+      title: function() {
+        return StanfordGallery.caption(this);
+      }
     };
 
     // Start by adding the appropriate class to all of the items.
@@ -20,13 +23,6 @@ Drupal.behaviors.stanford_gallery = {
 
     // Store the selected items for use.
     var items = $("." + selector);
-
-    // If the captions setting is available set it.
-    if (Drupal.settings.stanford_gallery.captions.length) {
-      $.each(items, function(i, v) {
-        $(v).attr('title', Drupal.settings.stanford_gallery.captions[i]);
-      });
-    }
 
     // Init each gallery independantly
     $.each($(".field-name-field-s-gallery-image-info"), function(i,v) {
@@ -39,6 +35,25 @@ Drupal.behaviors.stanford_gallery = {
   })(jQuery);
 
   }
+
+};
+
+/**
+ * StanfordGallery global object.
+ * @type {Object}
+ */
+StanfordGallery = {};
+StanfordGallery.caption = function(element) {
+  // Shortcut.
+  $ = jQuery;
+  // Define selector.
+  var selector = "stanford-gallery-image";
+  var items = $("." + selector);
+  var i = items.index(element);
+
+  // Fetch the caption.
+  var caption = Drupal.settings.stanford_gallery.captions[i];
+  return caption;
 };
 
 

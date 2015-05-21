@@ -70,7 +70,7 @@ function stanford_gallery_field_formatter_view($entity_type, $entity, $field, $i
   // Add colorbox settings JS.
   $element['#attached']['js'][] = drupal_get_path("module", "stanford_gallery") . "/js/stanford_gallery.js";
 
-  // Caption setting.
+  // Caption settings.
   if (!empty($entity->field_s_gallery_show_capt[LANGUAGE_NONE][0]['value']) && is_array($items)) {
     $captions = array();
     foreach ($items as $index => $fc_info) {
@@ -81,11 +81,18 @@ function stanford_gallery_field_formatter_view($entity_type, $entity, $field, $i
         continue;
       }
 
-      $captions[] = isset($fc[$fc_info['value']]->field_s_image_caption[LANGUAGE_NONE][0]['value']) ? strip_tags($fc[$fc_info['value']]->field_s_image_caption[LANGUAGE_NONE][0]['value']) : "";
+      $caption = isset($fc[$fc_info['value']]->field_s_image_caption[LANGUAGE_NONE][0]['value']) ? "<span class=\"caption\">" . strip_tags($fc[$fc_info['value']]->field_s_image_caption[LANGUAGE_NONE][0]['value']) . "</span>" : "";
+      $credit = isset($fc[$fc_info['value']]->field_s_image_credits[LANGUAGE_NONE][0]['value']) ? "<br /><span class=\"credits\">" . strip_tags($fc[$fc_info['value']]->field_s_image_credits[LANGUAGE_NONE][0]['value']) . "</span>" : "";
+      $captions[] = $caption . $credit;
+
     }
 
-    drupal_add_js(array("stanford_gallery" => array("captions" => $captions)), 'setting');
 
+  }
+
+  // Add captions.
+  if (!empty($captions)) {
+    drupal_add_js(array("stanford_gallery" => array("captions" => $captions)), 'setting');
   }
 
   return $element;
