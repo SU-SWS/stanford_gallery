@@ -105,6 +105,9 @@ function stanford_gallery_block_field_formatter_view($entity_type, $entity, $fie
     // Render entity.
     $result[$delta] = entity_view($field['settings']['target_type'], array($item['target_id'] => $entity), $settings['view_mode'], $langcode, FALSE);
 
+    // Remove nested contextual links.
+    unset($result[$delta]['node'][$item['target_id']]['#contextual_links']);
+
     // Links.
     if (empty($settings['links']) && isset($result[$delta][$field['settings']['target_type']][$item['target_id']]['links'])) {
       $result[$delta][$field['settings']['target_type']][$item['target_id']]['links']['#access'] = FALSE;
