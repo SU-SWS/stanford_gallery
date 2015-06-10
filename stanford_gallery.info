@@ -58,3 +58,4 @@ features_exclude[dependencies][stanford_program_service] = stanford_program_serv
 features_exclude[variable][language_content_type_stanford_gallery] = language_content_type_stanford_gallery
 features_exclude[variable][menu_parent_stanford_gallery] = menu_parent_stanford_gallery
 features_exclude[variable][node_preview_stanford_gallery] = node_preview_stanford_gallery
+features_exclude[variable][menu_options_stanford_gallery] = menu_options_stanford_gallery
