@@ -73,9 +73,9 @@ function stanford_gallery_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'gallery_small' => 'Small Square',
-        'gallery_medium' => 'Medium Square',
-        'gallery_large' => 'Large Square',
+        'gallery_small' => 'Small',
+        'gallery_medium' => 'Medium',
+        'gallery_large' => 'Large',
         'gallery_large_scaled' => 'Large Scaled',
       ),
       'allowed_values_function' => '',
