@@ -1,5 +1,5 @@
 
-stanford_gallery, 2015-02-24
+stanford_gallery, 2015-06-26
 -----------------------
 - Stanford compliant field and content name spaces
 - Body display set to Default
