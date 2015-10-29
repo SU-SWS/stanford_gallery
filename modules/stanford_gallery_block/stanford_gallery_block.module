@@ -68,8 +68,6 @@ function stanford_gallery_block_field_formatter_view($entity_type, $entity, $fie
   $settings = $display['settings'];
   $bean = $entity;
 
-  // For the node.
-  $settings['view_mode'] = "default";
   // For the Field Collections.
   $view_mode = !empty($entity->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value']) ? $entity->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value'] : 'gallery_large';
 
@@ -87,14 +85,6 @@ function stanford_gallery_block_field_formatter_view($entity_type, $entity, $fie
     // Change the view mode of the field collections.
     $entity->field_s_gallery_view_mode[LANGUAGE_NONE][0]['value'] = $view_mode;
 
-    // Change the title of the node if there is a block title set.
-    if (!empty($bean->title)) {
-      $entity->title = $bean->title;
-    }
-    else {
-      $settings['view_mode'] = "full";
-    }
-
     // Remove the body.
     if (isset($bean->field_s_gallery_show_body[LANGUAGE_NONE][0]['value'])) {
       if (!$bean->field_s_gallery_show_body[LANGUAGE_NONE][0]['value']) {
@@ -103,6 +93,7 @@ function stanford_gallery_block_field_formatter_view($entity_type, $entity, $fie
     }
 
     // Render entity.
+    $settings['view_mode'] = "beanblockoverrideviewmodekey";
     $result[$delta] = entity_view($field['settings']['target_type'], array($item['target_id'] => $entity), $settings['view_mode'], $langcode, FALSE);
 
     // Remove nested contextual links.
@@ -118,3 +109,17 @@ function stanford_gallery_block_field_formatter_view($entity_type, $entity, $fie
 
   return $result;
 }
+
+/**
+ * Implements hook_preprocess().
+ */
+function stanford_gallery_block_preprocess_node(&$vars) {
+
+  // If we are rendering the node from the block then we kill the title by this.
+  if ($vars["view_mode"] == "beanblockoverrideviewmodekey") {
+    $vars["page"] = TRUE;
+    $vars["view_mode"] = "full";
+  }
+
+}
+
