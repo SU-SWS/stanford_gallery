@@ -1,3 +1,7 @@
+stanford_gallery, 2015-11-10
+----------------------------
+- Added hook to not show title on node view
+- Updated css styles
 
 stanford_gallery, 2015-06-26
 -----------------------
