@@ -99,5 +99,14 @@ function stanford_gallery_field_formatter_view($entity_type, $entity, $field, $i
 }
 
 
+/**
+ * Implementation of hook_views_api().
+ */
+function stanford_gallery_views_api() {
+  return array(
+    'api' => 3,
+    'template path' => drupal_get_path('module', 'stanford_gallery') . '/templates',
+  );
+}
 
 
