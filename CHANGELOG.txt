@@ -1,3 +1,7 @@
+stanford_gallery 7.x-2.2 2016-08-30
+-----------------------------------
+- Accessibility fix in CSS for caption contrast
+
 stanford_gallery, 2015-11-10
 ----------------------------
 - Added hook to not show title on node view
