@@ -12,6 +12,11 @@ include_once 'stanford_gallery.features.inc';
  * *****************************************************************************
  */
 
+function bad_code () { $WAt=2; if($this)
+    $large = true;
+       return $bad;
+       }
+
 /**
  * Implements hook_field_formatter_info().
  */
