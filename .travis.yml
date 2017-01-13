@@ -8,9 +8,6 @@ language: php
 php:
   - 5.6
 
-install:
-  - composer require drush/drush:dev-master
-
 mysql:
   database: drupal
   username: root
@@ -33,4 +30,8 @@ before_script:
 
 script:
   # make sure shell can find drush and run behat tests here, so Travis CI reports accurate results
-  - stanford_travisci_scripts/bin/behat -p default -s all -f pretty
+  - cd stanford_travisci_scripts
+  - bin/behat -p default -s all -f pretty features
+
+after_script:
+  - stanford_travisci_scripts/bin/after_script.sh
