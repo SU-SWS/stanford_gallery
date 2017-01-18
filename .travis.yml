@@ -13,6 +13,8 @@ mysql:
   username: root
   encoding: utf8
 
+sudo: required
+
 before_install:
   # download external repository with Stanford Travis CI scripts
   - git clone https://github.com/SU-SWS/stanford_travisci_scripts.git
