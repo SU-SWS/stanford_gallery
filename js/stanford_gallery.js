@@ -60,6 +60,6 @@ StanfordGallery.caption = function(element) {
 // Add spoken feedback to the next/prev buttons.
 jQuery(document).bind('cbox_complete', function() {
   jQuery("#cboxTitle .caption")
-    .attr("role", "alert")
+    .attr("role", "status")
     .attr("aria-live", "assertive");
 });
