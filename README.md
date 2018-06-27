@@ -1,7 +1,7 @@
 ## Stanford Gallery
 
 
-#[Stanford Gallery](https://github.com/SU-SWS/stanford_gallery)
+[Stanford Gallery](https://github.com/SU-SWS/stanford_gallery)
 ##### Version: 7.x-2.x-dev
 
 Maintainers: [jbickar](https://github.com/jbickar), [sherakama](https://github.com/sherakama)
