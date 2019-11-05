@@ -20,6 +20,12 @@ Use
 1. Create new gallery content types and upload images.
 2. Create blocks to use gallery content types through the Stanford Gallery Bean.
 
+### Known Issues
+
+1. There is a finite limit to the number of images that can be placed in a Gallery. It is dependent upon server resources, but it is somewhere shy of 100.
+2. If gallery images won't load: the captions need to be set for each image and "Show Captions" needs to be enabled for the light box to work correctly. The error message is `TypeError: undefined is not an object (evaluating 'Drupal.settings.stanford_gallery.captions')`
+3. Multiple Gallery BEANs per page can cause issues with captions if there are empty field collections in a Gallery. The symptom will be captions offset from their images (e.g., caption C will appear on image D).
+
 Contribution / Collaboration
 ---
 
